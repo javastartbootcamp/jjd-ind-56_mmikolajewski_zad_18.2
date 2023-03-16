@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.List;
 
 public class PriceCalculator {
-    private static final double DIVIDER_TO_DECIMAL_VALUE = 100;
+    private static final double DECIMAL_DIVIDER = 100;
 
     public double calculatePrice(List<Product> products, List<Coupon> coupons) {
         if (products == null) {
@@ -19,7 +19,7 @@ public class PriceCalculator {
             double tempPrice = 0;
             for (Product product : products) {
                 if (product.getCategory().name().equals(coupon.getCategory().name())) {
-                    double discount = coupon.getDiscountValueInPercents() / DIVIDER_TO_DECIMAL_VALUE;
+                    double discount = coupon.getDiscountValueInPercents() / DECIMAL_DIVIDER;
                     tempPrice += product.getPrice() - (product.getPrice() * discount);
                 } else {
                     tempPrice += product.getPrice();
